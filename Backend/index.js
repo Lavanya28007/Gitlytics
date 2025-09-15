@@ -1,7 +1,7 @@
 const express = require('express');
 const app =express();
 const cors = require('cors');
-const developerRoutes = require('./routers/developerRoutes');
+const developerRoutes = require('./routers/developerRouter');
 const UserRouter = require('./routers/UserRouter');
 require('dotenv').config();
 
@@ -12,6 +12,7 @@ app.use(cors({
 }));
 app.use(express.json()); // tp parse json bodies
 app.use('/user', UserRouter);
+app.use('/developer', developerRoutes);
 
 // Root route
 app.get('/', (req, res) => {
