@@ -13,6 +13,7 @@
     "axios": "^1.12.1",
     "formik": "^2.4.6",
     "framer-motion": "^12.23.16",
+    "gsap": "^3.13.0",
     "lucide-react": "^0.544.0",
     "next": "15.5.2",
     "react": "19.1.0",
