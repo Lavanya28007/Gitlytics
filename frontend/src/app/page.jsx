@@ -73,7 +73,7 @@ export default function HomePage() {
     </p>
     <Link
       href="/compare"
-      className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition"
+      className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition"
     >
       Go to Compare Page →
     </Link>
