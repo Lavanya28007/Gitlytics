@@ -24,7 +24,7 @@ const getDevelopers = async (req, res) => {
     const response = await githubRequest(
       `${constants.base_url}/search/users?q=${searchQuery}&per_page=${per_page}&page=${page}`
     );
-
+    
     // Clean up response
     const developers = response.data.items.map((dev) => ({
       username: dev.login,
@@ -68,6 +68,8 @@ const followers = followersRes.data;
     const topLanguages = Object.entries(languageCount)
      .sort((a, b) => b[1] - a[1])  // sort by usage count
       .map(([lang, count]) => ({ language: lang, count })); 
+
+
 
       // Final response object 
       res.json({ profile, followers_count: followers.length,

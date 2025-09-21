@@ -24,6 +24,8 @@ async function fetchGithubUser(username) {
       profileUrl: res.data.html_url,
       followers: res.data.followers,
       publicRepos: res.data.public_repos,
+      following: res.data.following,
+      stars: res.data.public_stars,
     };
   } catch (err) {
     throw new Error(`Failed to fetch GitHub user: ${username}`);

@@ -14,6 +14,8 @@ const comparisonSchema = new mongoose.Schema({
     username: String,
     profileUrl: String,
     followers: Number,
+    following: Number,
+    stars: Number,
     publicRepos: Number,
   },
   winner: { type: String }, // "dev1" | "dev2" | "tie"
