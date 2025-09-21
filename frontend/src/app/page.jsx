@@ -3,17 +3,7 @@ import ProfileCard from "./components/ProfileCard";
 import Link from "next/link";
 import { FaReact, FaNodeJs, FaJava } from "react-icons/fa";
 import { SiTypescript, SiPython, SiVuedotjs } from "react-icons/si";
-
-
-const techTags = [
-  { name: "React", icon: <FaReact className="text-blue-400" /> },
-  { name: "TypeScript", icon: <SiTypescript className="text-sky-500" /> },
-  { name: "Python", icon: <SiPython className="text-yellow-400" /> },
-  { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
-  { name: "Vue.js", icon: <SiVuedotjs className="text-emerald-400" /> },
-  { name: "Java", icon: <FaJava className="text-orange-500" /> },
-];
-
+import { techQueryMap } from './utils/techMap';
 
 
 export default function HomePage() {
@@ -73,7 +63,6 @@ export default function HomePage() {
   return (
     <div className="space-y-20 bg-black text-white">
       {/* Hero Section */}
-
 <section className="text-center py-24 bg-gradient-to-b from-gray-900 to-black">
   <h1 className="text-5xl font-extrabold mb-6 text-green-500">Gitlytics</h1>
   <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
@@ -82,30 +71,17 @@ export default function HomePage() {
   <p className="text-sm text-gray-400 mb-8">
     Tracking <span className="text-green-400 font-semibold">250,000+</span> developers across <span className="text-green-400 font-semibold">10+</span> technologies
   </p>
-  <div className="flex flex-col md:flex-row justify-center  items-center gap-4 w-full max-w-3xl mx-auto">
+  <div className="flex flex-col md:flex-row justify-center items-center gap-4 w-full max-w-3xl mx-auto">
     <div className="w-full md:w-auto flex-1">
       <SearchBar />
     </div>
     <Link
       href="/leaderboard"
-      className="px-6 py-4  bg-green-600 hover:bg-green-700 text-white rounded-lg transition whitespace-nowrap w-full md:w-auto"
-    >
+      className="px-6 py-4 bg-green-600 hover:bg-green-700 text-white rounded-lg transition whitespace-nowrap w-full md:w-auto">
       Explore Rankings
     </Link>
   </div>
-  {/* Tech Tags */}
-  <div className="flex flex-wrap justify-center gap-3 mt-10">
-    {techTags.map((tech, idx) => (
-      <span
-        key={idx}
-        className="flex items-center gap-3
-         px-6 py-2 bg-gray-800 rounded-lg text-gray-200 hover:bg-gray-700 cursor-pointer"
-      >
-        {tech.icon}
-        {tech.name}
-      </span>
-    ))}
-  </div>
+  
 </section>
 
       {/* Browse by Technology */}
@@ -123,31 +99,29 @@ export default function HomePage() {
       </div>
       <p className="text-gray-400">{stack.count} devs</p>
       <p className="text-green-400 text-sm">{stack.growth} this month</p>
-      <Link href={`/tech/${stack.name.toLowerCase()}`} className="mt-4 inline-block text-green-500">
+      <Link href={`/browse?language=${encodeURIComponent(techQueryMap[stack.name] || stack.name)}`} className="mt-4 inline-block text-green-500 hover:underline">
         View Experts →
       </Link>
     </div>
   ))}
 </div>
       </section>
-
-      {/* Top Developers (Preview) */}
-      <section className="max-w-4xl mx-auto px-6">
-        <h2 className="text-3xl font-semibold mb-10 text-center">Top Developers</h2>
-        <div className="space-y-6">
-          {topDevs.map((dev) => (
-            <ProfileCard key={dev.rank} {...dev} />
-          ))}
-        </div>
-        <div className="text-center mt-10">
-          <Link
-            href="/leaderboard"
-            className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg text-white"
-          >
-            View Full Leaderboard
-          </Link>
-        </div>
-      </section>
+{/* Compare Developers Section */}
+<section className="max-w-6xl mx-auto px-6 text-center py-16">
+  <h2 className="text-3xl font-semibold mb-10">Compare Developers</h2>
+  <div className="bg-gray-900 p-8 rounded-xl border border-gray-700 hover:border-green-500 transition">
+    <h3 className="text-xl font-bold text-red-400 mb-4">⚔️ Head-to-Head</h3>
+    <p className="text-gray-300 mb-6">
+      Pick two GitHub developers and see how they stack up against each other in terms of followers, repos, and impact.
+    </p>
+    <Link
+      href="/compare"
+      className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition"
+    >
+      Go to Compare Page →
+    </Link>
+  </div>
+</section>
 
       {/* Why Gitlytics Section */}
       <section className="max-w-6xl mx-auto px-6 text-center py-16">

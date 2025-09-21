@@ -39,7 +39,7 @@ const getDevelopers = async (req, res) => {
       developers,
     });
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
     res.status(500).json({ message: constants.error_message });
   }
 };

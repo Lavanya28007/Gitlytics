@@ -3,6 +3,7 @@ const app =express();
 const cors = require('cors');
 const developerRoutes = require('./routers/developerRouter');
 const UserRouter = require('./routers/UserRouter');
+const comparisonRouter = require('./routers/ComparisonRouter');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
@@ -13,6 +14,8 @@ app.use(cors({
 app.use(express.json()); // tp parse json bodies
 app.use('/user', UserRouter);
 app.use('/developer', developerRoutes);
+app.use('/comparison', comparisonRouter);
+app.use('/api', developerRoutes);
 
 // Root route
 app.get('/', (req, res) => {
@@ -20,6 +23,5 @@ app.get('/', (req, res) => {
 });
 
 // Developer routes (all routes in developerRoutes.js will be prefixed with /api)
-app.use('/api', developerRoutes);
 
 app.listen(PORT, () => console.log(`🚀 Server started on port ${PORT}...`));

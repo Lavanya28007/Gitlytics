@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import React, { use } from 'react';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
+import api from "../utils/api";
 
 const LoginSchema = Yup.object().shape({
    email: Yup.string().email('Invalid email').required('Required'),
@@ -15,6 +16,9 @@ const LoginSchema = Yup.object().shape({
     .matches(/\W/, 'special character is required') 
     .min(6, 'Password must be at least 6 characters'),
  });
+
+// Removed incomplete and unused handleLogin function to fix syntax error.
+
 
 const Login = () => {
 const router = useRouter();
@@ -27,13 +31,14 @@ const loginForm = useFormik({
   onSubmit: (values) => {
     console.log(values);
 
-    axios.post('http://localhost:5000/user/authenticate', values)
+    api.post('/user/authenticate', values)
     .then((result) => {
       toast.success('Login Successful');
       console.log(result.data);
 
       if (result.data.token) {
             localStorage.setItem('token', result.data.token);
+            localStorage.setItem('user', JSON.stringify(result.data));
           }
       router.push('/');
       
