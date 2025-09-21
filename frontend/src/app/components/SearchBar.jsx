@@ -23,11 +23,11 @@ export default function SearchBar() {
  
 
   return (
-    <div className="w-full max-w-4xl mx-auto justify-center">
+    <div className="w-full mx-auto justify-center">
       {/* 🔍 Search Form */}
       <form
         onSubmit={handleSearch}
-        className="flex flex-col md:flex-row  gap-3 w-full bg-gray-900 p-4 rounded-xl shadow-lg border border-gray-800"
+        className="flex flex-col md:flex-row gap-3 w-full bg-gray-900 p-4 rounded-xl shadow-lg border border-gray-800"
       >
         {/* Free text search */}
         <input
@@ -80,7 +80,7 @@ export default function SearchBar() {
         {/* Submit button */}
         <button
           type="submit"
-          className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg text-white font-semibold transition">
+          className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-xl text-white font-semibold transition">
           Search
         </button>
       </form>

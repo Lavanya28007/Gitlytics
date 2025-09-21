@@ -24,7 +24,7 @@ export default function HistoryPage({ userId }) {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Your Comparison History</h1>
+      <h1 className="text-3xl mt-5 text-green-400 text-center font-extrabold mb-6">Your Comparison History</h1>
       {history.length === 0 ? (
         <p className="text-gray-500">No comparisons yet.</p>
       ) : (
@@ -32,9 +32,9 @@ export default function HistoryPage({ userId }) {
           {history.map((item) => (
             <li
               key={item._id}
-              className="p-4 bg-white shadow rounded-2xl flex justify-between items-center"
+              className="p-4 bg-blue-950 shadow rounded-2xl flex justify-between items-center"
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-7">
                 {/* Developer 1 */}
                 <a
                   href={item.dev1.profileUrl}
@@ -75,15 +75,15 @@ export default function HistoryPage({ userId }) {
               {/* Winner Badge */}
               <div>
                 {item.winner === "tie" ? (
-                  <span className="px-3 py-1 bg-gray-200 rounded-full text-sm">
-                    Tie
+                  <span className="px-3 py-2 bg-yellow-500 rounded-full font-bold text-m">
+                     It's a tie 🫱🏻‍🫲🏼
                   </span>
                 ) : (
-                  <span className="px-3 py-1 bg-green-500 text-white rounded-full text-sm">
+                  <span className="px-3 py-2 bg-green-500 text-white font-bold rounded-full text-m">
                     Winner:{" "}
                     {item.winner === "dev1"
                       ? item.dev1.username
-                      : item.dev2.username}
+                      : item.dev2.username}👑
                   </span>
                 )}
               </div>

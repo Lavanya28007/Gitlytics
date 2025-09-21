@@ -17,55 +17,12 @@ export default function HomePage() {
   { name: "Java", count: "16,750", growth: "+15%", color: "text-orange-500", icon: <FaJava className="text-orange-500 w-6 h-6" /> },
 ];
 
-  // Sample top developers (preview only)
-  const topDevs = [
-    {
-      rank: 1,
-      name: "Sarah Chen",
-      username: "sarahdev",
-      location: "San Francisco, CA",
-      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-      tags: ["React", "TypeScript", "Node.js"],
-      stars: 45280,
-      forks: 12450,
-      followers: 8920,
-      contributions: 2847,
-      repo: "awesome-react-components",
-    },
-    {
-      rank: 2,
-      name: "Alex Rodriguez",
-      username: "alexcode",
-      location: "Austin, TX",
-      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      tags: ["Python", "Django", "React"],
-      stars: 38940,
-      forks: 9230,
-      followers: 7450,
-      contributions: 2134,
-      repo: "ml-toolkit",
-    },
-    {
-      rank: 3,
-      name: "Emma Wilson",
-      username: "emmawilson",
-      location: "London, UK",
-      avatar: "https://randomuser.me/api/portraits/women/68.jpg",
-      tags: ["Vue.js", "TypeScript", "Java"],
-      stars: 32150,
-      forks: 7890,
-      followers: 6780,
-      contributions: 1923,
-      repo: "vue-enterprise-kit",
-    },
-  ];
-
   return (
     <div className="space-y-20 bg-black text-white">
       {/* Hero Section */}
 <section className="text-center py-24 bg-gradient-to-b from-gray-900 to-black">
   <h1 className="text-5xl font-extrabold mb-6 text-green-500">Gitlytics</h1>
-  <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
+  <p className="text-lg text-gray-300 max-w-4xl mx-auto mb-4">
     Discover top developers ranked by GitHub contributions, expertise, and impact across different technologies.
   </p>
   <p className="text-sm text-gray-400 mb-8">
@@ -75,11 +32,11 @@ export default function HomePage() {
     <div className="w-full md:w-auto flex-1">
       <SearchBar />
     </div>
-    <Link
+    {/* <Link
       href="/leaderboard"
-      className="px-6 py-4 bg-green-600 hover:bg-green-700 text-white rounded-lg transition whitespace-nowrap w-full md:w-auto">
+      className="px-6 py-4 ml-4  bg-green-600 hover:bg-green-700 text-white rounded-lg transition whitespace-nowrap w-full md:w-auto">
       Explore Rankings
-    </Link>
+    </Link> */}
   </div>
   
 </section>
