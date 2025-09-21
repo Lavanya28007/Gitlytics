@@ -67,7 +67,7 @@ export default function HomePage() {
 <section className="max-w-6xl mx-auto px-6 text-center py-16">
   <h2 className="text-3xl font-semibold mb-10">Compare Developers</h2>
   <div className="bg-gray-900 p-8 rounded-xl border border-gray-700 hover:border-green-500 transition">
-    <h3 className="text-xl font-bold text-red-400 mb-4">⚔️ Head-to-Head</h3>
+    <h3 className="text-2xl font-bold text-red-400 mb-4">⚔️ Head-to-Head</h3>
     <p className="text-gray-300 mb-6">
       Pick two GitHub developers and see how they stack up against each other in terms of followers, repos, and impact.
     </p>
