@@ -8,6 +8,8 @@ const comparisonSchema = new mongoose.Schema({
     username: String,
     profileUrl: String,
     followers: Number,
+    following: Number,
+    stars: Number,
     publicRepos: Number,
   },
   dev2: {
