@@ -74,7 +74,7 @@ const Signup = () => {
     <>
       <div className="relative">
         <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-          <h1 className="block text-3xl font-bold text-green-400 text-center ">
+          <h1 className="block text-3xl font-bold text-green-400 text-center  md:mb-8 lg:text-4xl">
                     Sign Up
                   </h1>
           <form onSubmit={signupForm.handleSubmit}>
