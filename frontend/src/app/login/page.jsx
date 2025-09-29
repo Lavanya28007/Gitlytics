@@ -43,7 +43,7 @@ const loginForm = useFormik({
       router.push('/');
       
     }).catch((err) => {
-      toast.error('Login Failed');
+      toast.error('Login Failed incorrect credentials');
       console.log(err);      
     });
   },
