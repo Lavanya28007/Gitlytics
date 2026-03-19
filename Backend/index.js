@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin:['http://localhost:3000']
 }));
-app.use(express.json()); // tp parse json bodies
+app.use(express.json()); // to parse json bodies
 app.use('/user', UserRouter);
 app.use('/developer', developerRoutes);
 app.use('/comparison', comparisonRouter);
