@@ -1,18 +1,17 @@
 import axios from "axios";
 
 const api = axios.create({
-baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
-// Add token automatically
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  if (typeof window !== "undefined") {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user?.token) {
+      config.headers.Authorization = `Bearer ${user.token}`;
+    }
   }
   return config;
-
 });
-
 
 export default api;

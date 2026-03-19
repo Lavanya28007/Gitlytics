@@ -2,14 +2,16 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "/api", // your backend prefix
+  baseURL: "/api", // OK if you're using Next.js API routes or proxy
 });
 
-// Add token automatically for every request
+// ✅ FIXED: Safe access to localStorage
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
   }
   return config;
 });
