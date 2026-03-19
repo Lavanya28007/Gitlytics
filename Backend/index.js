@@ -1,7 +1,7 @@
 const express = require('express');
 const app =express();
 const cors = require('cors');
-const developerRoutes = require('./routers/developerRouter');
+const developerRoutes = require('./routers/DeveloperRouter');
 const UserRouter = require('./routers/UserRouter');
 const comparisonRouter = require('./routers/ComparisonRouter');
 require('dotenv').config();
