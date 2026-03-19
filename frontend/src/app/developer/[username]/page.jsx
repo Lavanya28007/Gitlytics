@@ -38,7 +38,7 @@ export default function DeveloperProfile() {
   useEffect(() => {
     if (!username) return;
     axios
-      .get(`http://localhost:5000/api/developers/${username}`)
+        .get(  `${process.env.NEXT_PUBLIC_API_URL}/api/developers/${username}`)
       .then((res) => setProfile(res.data))
       .catch((err) => console.error("Error fetching profile:", err));
   }, [username]);
@@ -47,8 +47,7 @@ export default function DeveloperProfile() {
     if (!compareUser) return;
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/developers/${compareUser}`
-      );
+ `${process.env.NEXT_PUBLIC_API_URL}/api/developers?location=india&language=javascript`);
       setCompareProfile(res.data);
     } catch (err) {
       console.error("Error fetching comparison profile:", err);

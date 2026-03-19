@@ -43,7 +43,9 @@ const Signup = () => {
     onSubmit: (values, {resetForm}) => {
       console.log(values);   
       
-      axios.post('http://localhost:5000/user/register', values)
+      axios.post(  `${process.env.NEXT_PUBLIC_API_URL}/user/register`, 
+        values)
+
       .then((result) => {
         toast.success('User registered successfully');
         resetForm();

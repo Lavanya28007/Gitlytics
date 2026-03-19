@@ -13,7 +13,7 @@ export default function Leaderboard() {
       try {
         // 1️⃣ Get list of developers (basic info)
         const res = await axios.get(
-          "http://localhost:5000/api/developers?location=india&language=javascript"
+  `${process.env.NEXT_PUBLIC_API_URL}/api/developers?location=india&language=javascript`
         );
         const devList = res.data.developers;
 
@@ -22,7 +22,7 @@ export default function Leaderboard() {
           devList.map(async (dev) => {
             try {
               const profileRes = await axios.get(
-                `http://localhost:5000/api/developers/${dev.username}`
+  `${process.env.NEXT_PUBLIC_API_URL}/api/developers/${dev.username}`
               );
               return { ...dev, details: profileRes.data };
             } catch (err) {

@@ -27,7 +27,8 @@ const Browse = () => {
 
     const fetchDevelopers = async (location, language, query, perPage = 12, pageNum = 1) => {
         try {
-            const res = await axios.get("http://localhost:5000/api/developers", {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/developers`
+, {
                 params: {
                     location,
                     language,
