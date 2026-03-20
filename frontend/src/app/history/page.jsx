@@ -1,26 +1,55 @@
 'use client';
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import api from "../utils/api"; 
 
 export default function HistoryPage({ userId }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchHistory() {
       try {
-    const res = await api.get("/comparison/history");
+        // Check if token exists before making request
+        const token = localStorage.getItem('token');
+        if (!token) {
+          setError('Please log in to view your comparison history');
+          setLoading(false);
+          return;
+        }
+        
+        const res = await api.get("/comparison/history");
         setHistory(res.data);
       } catch (err) {
-        console.error(err);
+        console.error('Error fetching history:', err);
+        if (err.response?.status === 401) {
+          setError('Your session has expired. Please log in again.');
+          router.push('/login');
+        } else {
+          setError('Failed to load comparison history');
+        }
       } finally {
         setLoading(false);
       }
     }
     fetchHistory();
-  }, [userId]);
+  }, [userId, router]);
 
   if (loading) return <p className="text-center text-gray-500">Loading...</p>;
+
+  if (error) {
+    return (
+      <div className="max-w-3xl mx-auto p-6">
+        <h1 className="text-3xl mt-5 text-green-400 text-center font-extrabold mb-6">Your Comparison History</h1>
+        <p className="text-center text-red-500">{error}</p>
+        <div className="text-center mt-4">
+          <a href="/login" className="text-blue-500 hover:underline">Go to Login</a>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-3xl mx-auto p-6">
