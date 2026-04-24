@@ -4,6 +4,7 @@
 
 🔗 **Live Demo:** [gitlytics-eta.vercel.app](https://gitlytics-eta.vercel.app)
 
+---
 
 ## 🚀 Features
 
@@ -13,6 +14,8 @@
 - **Search History** — Logged-in users can revisit previously searched developer profiles
 - **Authentication** — User sign-in to unlock comparison and history features
 - **Responsive Design** — Fully functional across mobile, tablet, and desktop
+- **Developer Profile Pages** — Dedicated pages per developer with stats and repository breakdown
+- **Repository-level Analytics** — Stars, forks, and language breakdown per repo
 
 ---
 
@@ -20,49 +23,13 @@
 
 | Layer | Technology |
 |---|---|
-| Frontend | React.js, JavaScript (ES6+), CSS3 |
-| Routing | React Router |
+| Frontend | Next.js 14 (App Router), TypeScript |
+| Styling | Tailwind CSS |
 | API | GitHub REST API |
+| Backend | Node.js, Express |
+| Database | MongoDB (Mongoose) |
+| Auth | JWT + Middleware |
 | Deployment | Vercel |
-| Auth | JWT / Session-based (sign-in flow) |
-
-
-## 🏗️ Getting Started
-
-### Prerequisites
-- Node.js v18+
-- npm or yarn
-- GitHub Personal Access Token (for API requests)
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/Lavanya28007/Gitlytics.git
-
-# Navigate into the project
-cd Gitlytics
-
-# Install dependencies
-npm install
-
-# Create environment file
-cp .env.example .env
-# Add your GitHub token: REACT_APP_GITHUB_TOKEN=your_token_here
-
-# Start the development server
-npm start
-```
-
-App runs at `http://localhost:3000`
-
-### Environment Variables
-
-```env
-REACT_APP_GITHUB_TOKEN=your_github_personal_access_token
-```
-
-> Generate a token at: GitHub → Settings → Developer Settings → Personal Access Tokens
 
 ---
 
@@ -70,16 +37,93 @@ REACT_APP_GITHUB_TOKEN=your_github_personal_access_token
 
 ```
 gitlytics/
-├── public/
-├── src/
-│   ├── components/        # Reusable UI components
-│   ├── pages/             # Home, Leaderboard, Compare, About, History, Contact
-│   ├── services/          # GitHub API calls
-│   ├── context/           # Auth context / state management
-│   └── App.js
-├── .env.example
-└── package.json
+├── Backend/
+│   ├── controllers/
+│   │   └── developerController.js
+│   ├── middleware/
+│   │   └── auth.js
+│   ├── models/
+│   │   ├── ComparisonModel.js
+│   │   └── UserModel.js
+│   ├── routers/
+│   │   ├── ComparisonRouter.js
+│   │   ├── DeveloperRouter.js
+│   │   └── UserRouter.js
+│   ├── connection.js
+│   ├── constants.js
+│   └── index.js
+│
+└── frontend/
+    └── src/app/
+        ├── aboutus/
+        ├── browse/
+        ├── compare/
+        ├── components/
+        ├── contactus/
+        ├── developer/
+        ├── history/
+        ├── leaderboard/
+        ├── login/
+        ├── signup/
+        ├── utils/
+        │   ├── api.js
+        │   └── techMap.js
+        ├── layout.jsx
+        └── page.jsx
 ```
+
+---
+
+## 🏗️ Getting Started
+
+### Prerequisites
+
+- Node.js v18+
+- npm or yarn
+- GitHub Personal Access Token (for API requests)
+- MongoDB (local or Atlas)
+
+### Backend
+
+```bash
+cd Backend
+npm install
+```
+
+Create a `.env` file:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+GITHUB_TOKEN=your_github_personal_access_token
+PORT=5000
+```
+
+```bash
+node index.js
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+Create a `.env.local` file:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
+NEXT_PUBLIC_GITHUB_TOKEN=your_github_personal_access_token
+```
+
+```bash
+npm run dev
+```
+
+App runs at `http://localhost:3000`
+
+> Generate a GitHub token at: GitHub → Settings → Developer Settings → Personal Access Tokens
 
 ---
 
@@ -100,18 +144,9 @@ Rate limiting is handled via authenticated requests using a GitHub Personal Acce
 - **Data aggregation** across 250,000+ developer profiles using paginated GitHub API calls
 - **Dynamic ranking algorithm** based on followers, repository count, and contribution activity
 - **Technology-based filtering** with real-time growth percentage tracking
-- **Protected routes** — comparison and history features require authentication
+- **Protected routes** — comparison and history features require authentication via JWT middleware
+- **Comparison history** saved to MongoDB per user via `ComparisonModel`
 - **Deployed on Vercel** with automatic CI/CD on push to main branch
-
----
-
-## 🗺️ Roadmap
-
-- [ ] Add repository-level analytics (stars, forks, language breakdown)
-- [ ] Public developer profile pages
-- [ ] Email notifications for leaderboard rank changes
-- [ ] Dark mode toggle
-- [ ] Export comparison results as PDF
 
 ---
 
@@ -144,4 +179,4 @@ This project is open source and available under the [MIT License](./LICENSE).
 
 ---
 
-> Built with React.js and the GitHub API · Deployed on Vercel · Open to contributions
+> Built with Next.js and the GitHub API · Deployed on Vercel · Open to contributions
